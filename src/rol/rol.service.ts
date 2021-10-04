@@ -11,10 +11,10 @@ export class RolService {
     @InjectRepository(Rol)
     private readonly rolRepository: Repository<Rol>,
   ) {}
-  async getAllRol(): Promise<Rol[]> {
+  async getAllRoles(): Promise<Rol[]> {
     return await this.rolRepository.find();
   }
-  async getOneRol(id: number) {
+  async getRolById(id: number) {
     const getOneRol = await this.rolRepository.findOne(id);
     if (!getOneRol) throw new NotFoundException('Not Exists');
     return getOneRol;
@@ -24,12 +24,12 @@ export class RolService {
     return await this.rolRepository.save(createRol);
   }
   async updateRol(id: number, dto: UpdateRolDto) {
-    const getOneRol = await this.getOneRol(id);
+    const getOneRol = await this.getRolById(id);
     const updateRol = Object.assign(getOneRol, dto);
     return await this.rolRepository.save(updateRol);
   }
   async deleteRol(id: number) {
-    const getOneRol = await this.getOneRol(id);
+    const getOneRol = await this.getRolById(id);
     return await this.rolRepository.remove(getOneRol);
   }
 }

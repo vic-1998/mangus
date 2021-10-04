@@ -1,5 +1,11 @@
 import { IsNumber, IsString } from 'class-validator';
-export class CreateClientDto {
+
+/**
+ * CreateEmployeeDto:management of the role object,
+ * to define its attributes and validate fields
+ */
+
+export class CreateEmployeeDto {
   @IsNumber()
   user_id: number;
   @IsString()

@@ -8,33 +8,33 @@ import {
   Put,
   ParseIntPipe,
 } from '@nestjs/common';
-import { CreateClientDto, UpdateClientDto } from './dto';
+import { CreateEmployeeDto, UpdateEmployeeDto } from './dto';
 import { EmployeesService } from './employees.service';
 
 @Controller('clients')
 export class EmployeesController {
   constructor(private readonly clientService: EmployeesService) {}
   @Get()
-  getAllClients() {
-    return this.clientService.getAllClients();
+  getAllEmployees() {
+    return this.clientService.getAllEmployees();
   }
   @Get(':id')
-  getOneClient(@Param('id', ParseIntPipe) id: number) {
-    return this.clientService.getOneClient(id);
+  getEmployeeById(@Param('id', ParseIntPipe) id: number) {
+    return this.clientService.getEmployeeById(id);
   }
   @Post()
-  createClient(@Body() dto: CreateClientDto) {
-    return this.clientService.createClient(dto);
+  createEmployee(@Body() dto: CreateEmployeeDto) {
+    return this.clientService.createEmployee(dto);
   }
   @Put(':id')
-  updateClient(
+  updateEmployee(
     @Param('id', ParseIntPipe) id: number,
-    @Body() dto: UpdateClientDto,
+    @Body() dto: UpdateEmployeeDto,
   ) {
-    return this.clientService.updateClient(id, dto);
+    return this.clientService.updateEmployee(id, dto);
   }
   @Delete(':id')
-  deleteClient(@Param('id', ParseIntPipe) id: number) {
-    return this.clientService.deleteClient(id);
+  deleteEmployee(@Param('id', ParseIntPipe) id: number) {
+    return this.clientService.deleteEmployee(id);
   }
 }

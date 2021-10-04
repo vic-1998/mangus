@@ -13,22 +13,22 @@ export class ClientsService {
   async getAllClients(): Promise<Client[]> {
     return await this.userRepository.find();
   }
-  async getOneClient(id: number) {
-    const getUserById = await this.userRepository.findOne(id);
-    if (!getUserById) throw new NotFoundException('Not exists');
-    return getUserById;
+  async getClientById(id: number) {
+    const userById = await this.userRepository.findOne(id);
+    if (!userById) throw new NotFoundException('Not exists');
+    return userById;
   }
   async createClient(dto: CreateClientDto) {
     const createUser = this.userRepository.create(dto);
     return await this.userRepository.save(createUser);
   }
   async updateClient(id: number, dto: UpdateClientDto) {
-    const getUser = await this.getOneClient(id);
+    const getUser = await this.getClientById(id);
     const updateUser = Object.assign(getUser, dto);
     return await this.userRepository.save(updateUser);
   }
   async deleteClient(id: number) {
-    const getUser = await this.getOneClient(id);
+    const getUser = await this.getClientById(id);
     return await this.userRepository.remove(getUser);
   }
 }

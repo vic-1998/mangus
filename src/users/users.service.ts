@@ -13,22 +13,22 @@ export class UsersService {
   async getAllUsers(): Promise<Users[]> {
     return await this.userRepository.find();
   }
-  async getOneUser(id: number) {
-    const getUserById = await this.userRepository.findOne(id);
-    if (!getUserById) throw new NotFoundException('Not exists');
-    return getUserById;
+  async getUserById(id: number) {
+    const userById = await this.userRepository.findOne(id);
+    if (!userById) throw new NotFoundException('Not exists');
+    return userById;
   }
   async createUser(dto: CreateUserDto) {
-    const createUser = await this.userRepository.create(dto);
+    const createUser = this.userRepository.create(dto);
     return await this.userRepository.save(createUser);
   }
   async updateUser(id: number, dto: UpdateUserDto) {
-    const getUser = await this.getOneUser(id);
+    const getUser = await this.getUserById(id);
     const updateUser = Object.assign(getUser, dto);
     return await this.userRepository.save(updateUser);
   }
   async deleteUser(id: number) {
-    const getUser = await this.getOneUser(id);
+    const getUser = await this.getUserById(id);
     return await this.userRepository.remove(getUser);
   }
 }

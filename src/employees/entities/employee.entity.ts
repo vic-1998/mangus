@@ -1,12 +1,12 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 /**
- * role client, this is the reprensentation of the table
+ * employee entity, this is the reprensentation of the table
  *  in the database, with its respective fields
- * */
+ */
 
-@Entity('client')
-export class Client {
+@Entity('employee')
+export class Employee {
   @PrimaryGeneratedColumn()
   id!: number;
   @Column()

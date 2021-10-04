@@ -19,8 +19,8 @@ export class ClientsController {
     return this.clientService.getAllClients();
   }
   @Get(':id')
-  getOneClient(@Param('id', ParseIntPipe) id: number) {
-    return this.clientService.getOneClient(id);
+  getClientById(@Param('id', ParseIntPipe) id: number) {
+    return this.clientService.getClientById(id);
   }
   @Post()
   createClient(@Body() dto: CreateClientDto) {

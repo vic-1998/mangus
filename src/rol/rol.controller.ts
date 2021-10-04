@@ -8,19 +8,19 @@ import {
   Body,
   ParseIntPipe,
 } from '@nestjs/common';
-import { CreateRolDto, UpdateRolDto } from './dto';
 import { RolService } from './rol.service';
+import { CreateRolDto, UpdateRolDto } from './dto';
 
 @Controller('rol')
 export class RolController {
   constructor(private readonly rolService: RolService) {}
   @Get()
-  async getAllRol() {
-    return await this.rolService.getAllRol();
+  async getAllRoles() {
+    return await this.rolService.getAllRoles();
   }
   @Get(':id')
-  async getOneRol(@Param('id', ParseIntPipe) id: number) {
-    return await this.rolService.getOneRol(id);
+  async getRolById(@Param('id', ParseIntPipe) id: number) {
+    return await this.rolService.getRolById(id);
   }
   @Post()
   async createdRol(@Body() dto: CreateRolDto) {
